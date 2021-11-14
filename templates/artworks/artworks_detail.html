@@ -16,7 +16,7 @@
         <h2 class="featurette-Заголовок">"{{ artworks.name}}" </h2>
         <p class="lead">{{ artworks.artist }}</p>
         <h4>Описание</h4>
-        <p class="lead">{{ artworks.description }}</p>
+        <p class="lead">{{ artworks.description|safe }}</p>
         <h4>Категория: <span class="lead">{{ artworks.category  }}</span>         </h4>
         <h4>Техника:
             {% for technic_paint in artworks.technic_paint.all %}

@@ -1,8 +1,19 @@
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-
+# from . import forms
 from .models import *
+from django import forms
 # Register your models here.
+
+from artworks.models import Artworks
+
+class ArtworksAdminForm(forms.ModelForm):
+    description = forms.CharField(label='Описание',widget=CKEditorUploadingWidget())
+    class Meta:
+        model = Artworks
+        fields = '__all__'
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("id","name","url")
@@ -22,6 +33,7 @@ class ArtworkAdmin(admin.ModelAdmin):
     inlines = [CommentInline]
     save_on_top = True
     list_editable = ("draft",)
+    form = ArtworksAdminForm
 
     fieldsets = (
         (None, {
@@ -76,6 +88,7 @@ class ArtistAdmin(admin.ModelAdmin):
     readonly_fields = ("get_image",)
     search_fields = ("name", "surname", "description")
     list_filter = ("technic_favorite","location")
+
     fieldsets = (
         (None, {
             "fields": (("surname","name","patronymic"),)
