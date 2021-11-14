@@ -65,11 +65,11 @@ class ArtworkAdmin(admin.ModelAdmin):
             "fields": (("tags", "url", "draft"),)
         }),
     )
+
     def get_image(self, obj):
         return mark_safe(f'<img src={obj.poster.url} width="55" height="60">')
 
     get_image.short_description = "Изображение"
-
 @admin.register(Artists)
 class ArtistAdmin(admin.ModelAdmin):
     list_display = ( "surname", "name", "patronymic", "technic_favorite", "get_image")
