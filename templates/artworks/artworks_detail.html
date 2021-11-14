@@ -1,0 +1,56 @@
+{% extends 'artworks/base.html' %}
+{% block title %} {{ artworks.name}} {% endblock title %}
+{% block container %}
+    <div class="container py-md-3">
+{% endblock container %}
+
+{% block sidebar %}
+    <div class="side-bar col-lg-4">
+{% endblock sidebar %}
+
+{% block artwork %}
+  <div class="left-ads-display col-lg-8">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-Заголовок">"{{ artworks.name}}" </h2>
+        <p class="lead">{{ artworks.artist }}</p>
+        <h4>Описание</h4>
+        <p class="lead">{{ artworks.description }}</p>
+        <h4>Категория: <span class="lead">{{ artworks.category  }}</span>         </h4>
+        <h4>Техника:
+            {% for technic_paint in artworks.technic_paint.all %}
+                <span class="lead">{{ technic_paint }}</span>
+                {% if artworks.technic_paint.all.count > 1 %}
+                    <span>,</span>
+                {% endif %}
+            {% endfor %}
+        </h4>
+        <h4>Страна: <span class="lead">{{ artworks.country  }}</span></h4>
+        <h4>Местонахождение работы: <span class="lead">{{ artworks.location  }}</span> </h4>
+        <h4>Год создания работы: <span class="lead">{{ artworks.year  }}</span></h4>
+        <h4>Стоимость: <i class="lead">{{ artworks.price }} &#8381;</i></h4>
+        <div>
+            <p class="lead" title="Как и где автор оставил свою подпись">Идентификация автора: {{ artworks.signature }}</p>
+            <p class="lead" title="Проверка галереей или ссылка на NFT-маркетплейс">Подтверждение подлинности: {{ artworks.certificate_of_auth }}</p>
+            <p class="lead">Размер работы: {{ artworks.size }} mm.</p>
+            <p class="lead">Теги: {{ artworks.tags }}</p>
+        </div>
+
+      </div>
+
+      <div class="col-md-5 order-md-1">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{{ artworks.poster.url }}" class="card-img-top" alt="{{artworks.name}}">
+
+      </div>
+
+    </div>
+    <div class="left-ads-display col-lg-12">
+    {% include 'include/comment.html' %}
+    </div>
+{% endblock artwork %}
+
+
+
+
+

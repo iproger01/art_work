@@ -1,0 +1,34 @@
+{% extends 'artworks/base.html' %}
+{% block title %} {% endblock title %}
+{% block header %} bg1 {% endblock header %}
+{% block artwork %}
+  <div class="left-ads-display col-lg-9">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {%  for artwork in artworks_list %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="bd-placeholder-img card-img-top" style="object-fit: contain"  width="100%" src="{{ artwork.poster.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text" > {{ artwork.name }}</p>
+              <p class="card-text">{{ artwork.artist }}</p>
+              <p class="card-text">{{ artwork.description }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href = '{{ artwork.get_absolute_url }}';">Посмотреть</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Купить</button>
+                </div>
+                <small class="text-muted">9 минут</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock artwork %}
+
+
