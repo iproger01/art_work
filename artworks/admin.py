@@ -82,7 +82,7 @@ class ArtistAdmin(admin.ModelAdmin):
         }),
 
         (None, {
-            "fields": (("image", "get_image"),)  #show group in page
+            "fields": (("image", "get_image"),)   #show group in page
         }),
 
         (None, {
