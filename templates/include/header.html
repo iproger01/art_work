@@ -1,32 +1,48 @@
-{#вставить хлебные крошки#}
-<header>
-  <div class="collapse bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">О нас</h4>
-          <p class="text-muted">Добавьте информацию об альбоме ниже, авторе или любом другом фоновом контексте. Составьте несколько предложений, чтобы люди могли почерпнуть некоторые полезные сведения. Затем свяжите их с некоторыми сайтами социальных сетей или с контактной информацией.</p>
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Связаться с нами</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Следуйте в Twitter</a></li>
-            <li><a href="#" class="text-white">Лайк в Facebook</a></li>
-            <li><a href="#" class="text-white">Email</a></li>
-          </ul>
-        </div>
-      </div>
+{% load artwork_tags %}
+<header class="header">
+    <div class="container-fluid px-lg-5">
+        <!-- nav -->
+        <nav class="py-4">
+            <div id="logo">
+                <h1><a href="index.html" class="editContent"
+                       style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: Source Sans Pro;, sans-serif;">DjangoMovie</a>
+                </h1>
+            </div>
+
+            <label for="drop" class="toggle">Menu</label>
+            <input type="checkbox" id="drop">
+            <ul class="menu mt-2">
+                <li class="active"><a href="index.html">Главная</a></li>
+                <li>
+                    <!-- First Tier Drop Down -->
+                    <label for="drop-2" class="toggle">Категории <span
+                            class="fa fa-angle-down" aria-hidden="true"></span> </label>
+                    <a href="#">Категории <span class="fa fa-angle-down"
+                                                aria-hidden="true"></span></a>
+                    <input type="checkbox" id="drop-2">
+                    <ul>
+                        {% get_categories as categories %}
+                        {% for category in categories %}
+                        <li><a href="/">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="contact.html"
+                       style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">Вход</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- //nav -->
     </div>
-  </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" Посмотретьbox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-        <strong>Album</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </div>
 </header>
+<!-- //header -->
+<!--/banner-->
+<div class="banner-info">
+    <p class="editContent">лучший сайт на django 3</p>
+    <h3 class="mb-4 editContent">Все о кино</h3>
+    <div class="ban-buttons">
+
+
+    </div>
+</div>
+<!--// banner-inner -->

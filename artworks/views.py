@@ -13,6 +13,7 @@ class ArtworkView(ListView):
     queryset = Artworks.objects.filter(draft=False)
     template_name = "artworks/artworks_list.html"
 
+
 class ArtworkDetailView(DetailView):
     '''Детальная информация по работе'''
     model = Artworks
