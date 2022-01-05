@@ -1,0 +1,45 @@
+{% extends 'artworks/base.html' %}
+{% block title %} {{ artists.get_full_name}} {% endblock title %}
+{% block container %}
+    <div class="container py-md-3">
+{% endblock container %}
+
+{% block sidebar %}
+    <div class="side-bar col-lg-4">
+{% endblock sidebar %}
+
+{% block artwork %}
+  <div class="left-ads-display col-lg-8">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-Заголовок">"{{ artists.get_full_name}}" </h2>
+        <h4>Биография</h4>
+        <h4>Дата рождения: <span class="lead">{{ artists.age  }}</span></h4>
+        <h4>Образование: <span class="lead">{{ artists.education  }}</span></h4>
+        <h4>Локация: <span class="lead">{{ artists.location  }}</span></h4>
+        <h4>Техника:
+            {% for technic_paint in artists.technic_favorite.all %}
+                <span class="lead">{{ technic_paint.name }}</span>
+                {% if artists.technic_favorite.all.count > 1 %}
+                    <span>,</span>
+                {% endif %}
+            {% endfor %}
+        </h4>
+      </div>
+
+      <div class="col-md-5 order-md-1">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{{ artists.image.url }}" class="card-img-top" alt="{{artworks.name}}">
+
+      </div>
+
+    </div>
+{#    <div class="left-ads-display col-lg-12">#}
+{#    {% include 'include/comment.html' %}#}
+{#    </div>#}
+{% endblock artwork %}
+
+
+
+
+

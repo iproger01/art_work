@@ -20,6 +20,12 @@ class ArtworkDetailView(DetailView):
     template_name = "artworks/artworks_detail.html"
     slug_field = "url"
 
+class ArtistsView(DetailView):
+    '''Вывод информации о художнике'''
+    model = Artists
+    template_name = "artworks/artist.html"
+    slug_field = "surname"
+
 class AddReview(View):
     '''Отзывы'''
     model = Artworks

@@ -22,9 +22,9 @@ class Artists(models.Model):
     patronymic = models.CharField(verbose_name="Отчество", max_length=300,blank=True)
     image = models.ImageField(verbose_name="Изображение", upload_to="artists/")
     location = models.CharField(verbose_name="Адрес", max_length=450)
-    technic_favorite = models.ForeignKey(Category, verbose_name="Техника работы художника", on_delete=models.SET_NULL, null=True)
+    technic_favorite = models.ForeignKey(Category, verbose_name="Техника работы художника", on_delete=models.SET_NULL, null=True, related_name="atist_tech")
     age = models.PositiveSmallIntegerField(verbose_name="Возраст")
-    description = models.TextField(verbose_name='Описание',max_length=500)
+    description = models.TextField(verbose_name='Биография',max_length=500)
     education = models.TextField(verbose_name='Образование',max_length=250)
     facebook = models.CharField(verbose_name="Facebook", max_length=300, blank=True)
     instagram = models.CharField(verbose_name="Instagram", max_length=300, blank=True)
@@ -33,7 +33,11 @@ class Artists(models.Model):
     phone = models.CharField(verbose_name="Номер телефона", max_length=22)
 
     def __str__(self):
-        return self.surname + ' ' + self.name
+        return self.surname
+
+    def get_full_name(self):
+        return self.surname + " " + self.name
+
 
     class Meta:
         verbose_name_plural = "Авторы"
