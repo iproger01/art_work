@@ -26,8 +26,8 @@ class CommentInline(admin.TabularInline):
 
 @admin.register(Artworks)
 class ArtworkAdmin(admin.ModelAdmin):
-    list_display = ("name", "category", "url", "draft", "get_image")
-    list_filter = ("category", "year")
+    list_display = ("name", "url", "draft", "get_image")
+    list_filter = ("year","category__name")
     search_fields = ("name", "category__name")
     readonly_fields = ("get_image",)
     inlines = [CommentInline]
@@ -54,7 +54,7 @@ class ArtworkAdmin(admin.ModelAdmin):
         }),
 
         (None, {
-            "fields": (("artist", "owner"),)
+            "fields": (("artist__name", "owner"),)
         }),
 
         (None, {
@@ -110,12 +110,17 @@ class ArtworkAdmin(admin.ModelAdmin):
 
     get_image.short_description = "Изображение"
 
+# class TechnicInline(admin.TabularInline):
+#     model = Technic
+#     extra = 1
+
 @admin.register(Artists)
 class ArtistAdmin(admin.ModelAdmin):
-    list_display = ( "surname", "name", "patronymic", "technic_favorite", "get_image")
+    list_display = ( "surname", "name", "patronymic", "get_image")
     readonly_fields = ("get_image",)
     search_fields = ("name", "surname", "description")
-    list_filter = ("technic_favorite","location")
+    list_filter = ("location",)
+    # inlines = [TechnicInline]
 
     fieldsets = (
         (None, {
@@ -130,9 +135,9 @@ class ArtistAdmin(admin.ModelAdmin):
             "fields": (("age", "education","description"),)
         }),
 
-        (None, {
-            "fields": (("technic_favorite",),)
-        }),
+        # (None, {
+        #     "fields": (("technic_favorite",),)
+        # }),
 
         ("Contacts", {
             "fields": (("nft_platform", "site"),)

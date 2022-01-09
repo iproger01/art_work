@@ -14,18 +14,20 @@
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
         <h2 class="featurette-Заголовок">"{{ artworks.name}}" </h2>
-          <a class="lead" href="{% url 'artist_detail' artworks.artist.surname %}">{{ artworks.artist.get_full_name }}</a>
+          {% for artist in artworks.artist.all %}
+             <a class="lead" href="{{ artist.get_absolute_url }}">{{ artist.get_full_name }}</a>
+          {% endfor %}
 
         <h4>Описание</h4>
         <p class="lead">{{ artworks.description|safe }}</p>
-        <h4>Категория: <span class="lead">{{ artworks.category  }}</span>         </h4>
-        <h4>Техника:
-            {% for technic_paint in artworks.technic_paint.all %}
-                <span class="lead">{{ technic_paint }}</span>
-                {% if artworks.technic_paint.all.count > 1 %}
-                    <span>,</span>
-                {% endif %}
-            {% endfor %}
+{#        <h4>Категория: <span class="lead">{{ artworks.category  }}</span>         </h4>#}
+{#        <h4>Техника:#}
+{#            {% for category in artworks.category %}#}
+{#                <span class="lead">{{ category }}</span>#}
+{#                {% if artworks.category.all.count > 1 %}#}
+{#                    <span>,</span>#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
         </h4>
         <h4>Страна: <span class="lead">{{ artworks.country  }}</span></h4>
         <h4>Местонахождение работы: <span class="lead">{{ artworks.location  }}</span> </h4>

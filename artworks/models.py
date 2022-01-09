@@ -15,6 +15,16 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = "Категории"
 
+class Technic(models.Model):
+    name = models.CharField(verbose_name="Техника работы", max_length=250)
+    description = models.TextField(verbose_name='Описание')
+    url = models.SlugField(max_length=180, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Основная техника"
 
 class Artists(models.Model):
     name = models.CharField(verbose_name="Имя", max_length=300)
@@ -22,7 +32,8 @@ class Artists(models.Model):
     patronymic = models.CharField(verbose_name="Отчество", max_length=300,blank=True)
     image = models.ImageField(verbose_name="Изображение", upload_to="artists/")
     location = models.CharField(verbose_name="Адрес", max_length=450)
-    technic_favorite = models.ForeignKey(Category, verbose_name="Техника работы художника", on_delete=models.SET_NULL, null=True, related_name="atist_tech")
+    technic_favorite = models.ForeignKey(Technic, verbose_name="Основная техника художника", on_delete=models.SET_NULL,
+                                         null=True)
     age = models.PositiveSmallIntegerField(verbose_name="Возраст")
     description = models.TextField(verbose_name='Биография',max_length=500)
     education = models.TextField(verbose_name='Образование',max_length=250)
@@ -37,6 +48,9 @@ class Artists(models.Model):
 
     def get_full_name(self):
         return self.surname + " " + self.name
+
+    def get_absolute_url(self):
+        return reverse('artist_detail', kwargs={"slug":self.surname})
 
 
     class Meta:
@@ -53,7 +67,6 @@ class Technic(models.Model):
     class Meta:
         verbose_name_plural = "Техники"
 
-
 class Artworks(models.Model):
     name = models.CharField(verbose_name="Название работы", max_length=250)
     description = models.TextField(verbose_name='Описание')
@@ -62,10 +75,10 @@ class Artworks(models.Model):
     year = models.PositiveSmallIntegerField(verbose_name="Год создания")
     country = models.ForeignKey("Country", verbose_name="Страна", on_delete=models.SET_NULL,null=True)
     location = models.CharField(verbose_name="Месонахождение предмета", max_length=350)
-    artist = models.ForeignKey(Artists, verbose_name="Автор", on_delete=models.SET_NULL, related_name="artwork_artist",null=True)
+    artist = models.ManyToManyField(Artists, verbose_name="Автор", related_name="artwork_artist") #изменил foreighnkey
     owner = models.CharField(verbose_name="Владелец", max_length=300, blank=True)
-    technic_paint = models.ManyToManyField(Technic, verbose_name="Техника", related_name="artwork_technic")
-    category = models.ForeignKey(Category, verbose_name="Категория", on_delete=models.SET_NULL, null=True)
+    # category_paint = models.ManyToManyField(Technic, verbose_name="Техника", related_name="artwork_technic")
+    category = models.ManyToManyField(Category, verbose_name="Категория")
     price = models.PositiveIntegerField(verbose_name="Цена", help_text="Укажите сумму в рублях", default=0)
     in_sale = models.BooleanField(verbose_name="В продаже",default=False)
     signature = models.CharField(verbose_name="Идентификация автора", max_length=300, help_text="Как и где автор оставил свою подпись")
