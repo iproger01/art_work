@@ -54,11 +54,11 @@ class ArtworkAdmin(admin.ModelAdmin):
         }),
 
         (None, {
-            "fields": (("artist__name", "owner"),)
+            "fields": (("artist", "owner"),)
         }),
 
         (None, {
-            "fields": (("category", "technic_paint"),)
+            "fields": (("category"),)
         }),
 
         (None, {
@@ -114,6 +114,9 @@ class ArtworkAdmin(admin.ModelAdmin):
 #     model = Technic
 #     extra = 1
 
+# class TechnicInline(admin.TabularInline):
+#     model = Technic
+
 @admin.register(Artists)
 class ArtistAdmin(admin.ModelAdmin):
     list_display = ( "surname", "name", "patronymic", "get_image")
@@ -136,9 +139,9 @@ class ArtistAdmin(admin.ModelAdmin):
             "fields": (("age", "education","description"),)
         }),
 
-        # (None, {
-        #     "fields": (("technic_favorite",),)
-        # }),
+        (None, {
+            "fields": (("technic_favorite",),)
+        }),
 
         ("Contacts", {
             "fields": (("nft_platform", "site"),)

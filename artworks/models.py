@@ -15,6 +15,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = "Категории"
 
+
 class Technic(models.Model):
     name = models.CharField(verbose_name="Техника работы", max_length=250)
     description = models.TextField(verbose_name='Описание')
@@ -26,13 +27,6 @@ class Technic(models.Model):
     class Meta:
         verbose_name_plural = "Основная техника"
 
-class Technic(models.Model):
-    name = models.CharField(verbose_name="Техника работы", max_length=250)
-    description = models.TextField(verbose_name='Описание')
-    url = models.SlugField(max_length=180, unique=True)
-
-    def __str__(self):
-        return self.name
 
 class Artists(models.Model):
     name = models.CharField(verbose_name="Имя", max_length=300)
@@ -40,7 +34,8 @@ class Artists(models.Model):
     patronymic = models.CharField(verbose_name="Отчество", max_length=300,blank=True)
     image = models.ImageField(verbose_name="Изображение", upload_to="artists/")
     location = models.CharField(verbose_name="Адрес", max_length=450)
-    technic_favorite = models.ForeignKey(Technic, verbose_name="Основная техника художника",on_delete=models.SET_NULL,null=True)
+    technic_favorite = models.ForeignKey(Technic, verbose_name="Основная техника художника", on_delete=models.SET_NULL,
+                                         null=True)
     age = models.PositiveSmallIntegerField(verbose_name="Возраст")
     description = models.TextField(verbose_name='Биография',max_length=500)
     education = models.TextField(verbose_name='Образование',max_length=250)
@@ -69,7 +64,8 @@ class Artists(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = "Техники"
+        verbose_name_plural = "Художники"
+
 
 class Artworks(models.Model):
     name = models.CharField(verbose_name="Название работы", max_length=250)
