@@ -110,7 +110,7 @@ class ArtworkAdmin(admin.ModelAdmin):
 
     get_image.short_description = "Изображение"
 
-# class TechnicInline(admin.TabularInline):
+# class TechnicInline(admin.):
 #     model = Technic
 #     extra = 1
 
@@ -120,6 +120,7 @@ class ArtistAdmin(admin.ModelAdmin):
     readonly_fields = ("get_image",)
     search_fields = ("name", "surname", "description")
     list_filter = ("location",)
+    # filter_horizontal = ('technic_favorite',)
     # inlines = [TechnicInline]
 
     fieldsets = (
