@@ -34,8 +34,9 @@ class Artists(models.Model):
     patronymic = models.CharField(verbose_name="Отчество", max_length=300,blank=True)
     image = models.ImageField(verbose_name="Изображение", upload_to="artists/")
     location = models.CharField(verbose_name="Адрес", max_length=450)
-    technic_favorite = models.ForeignKey(Technic, verbose_name="Основная техника художника", on_delete=models.SET_NULL,
-                                         null=True)
+    technic_favorite = models.ManyToManyField(Technic, verbose_name="Основная техника художника")
+    # technic_favorite_addition = models.ForeignKey(Technic, verbose_name="Основная техника художника", on_delete=models.SET_NULL,
+    #                                      null=True, default=None)
     age = models.PositiveSmallIntegerField(verbose_name="Возраст")
     description = models.TextField(verbose_name='Биография',max_length=500)
     education = models.TextField(verbose_name='Образование',max_length=250)
@@ -75,7 +76,8 @@ class Artworks(models.Model):
     year = models.PositiveSmallIntegerField(verbose_name="Год создания")
     country = models.ForeignKey("Country", verbose_name="Страна", on_delete=models.SET_NULL,null=True)
     location = models.CharField(verbose_name="Месонахождение предмета", max_length=350)
-    artist = models.ManyToManyField(Artists, verbose_name="Автор", related_name="artwork_artist") #изменил foreighnkey
+    artist = models.ForeignKey(Artists, verbose_name="Автор", related_name="artwork_artist",on_delete=models.SET_NULL,
+                                          null=True) #изменил foreighnkey
     owner = models.CharField(verbose_name="Владелец", max_length=300, blank=True)
     # category_paint = models.ManyToManyField(Technic, verbose_name="Техника", related_name="artwork_technic")
     category = models.ManyToManyField(Category, verbose_name="Категория")
@@ -106,11 +108,12 @@ class Raitingstar(models.Model):
     value = models.SmallIntegerField(verbose_name="Значение", default=0)
 
     def __str__(self):
-        return self.value
+        return f'{self.value}'
 
     class Meta:
         verbose_name = "Звезда рейтинга"
         verbose_name_plural = "Звезды рейтинга"
+        ordering = ["-value"] #Сортировка по значению
 
 class Raiting(models.Model):
     ip = models.CharField("IP-адрес", max_length=15)

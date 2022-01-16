@@ -1,3 +1,5 @@
+from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -5,22 +7,37 @@ from django.views import View
 from django.views.generic import ListView, DetailView
 
 from .models import *
-from .forms import ReviewForm
+from .forms import ReviewForm, RaitingForm
 
-class ArtworkView(ListView):
+class CategoryYear():
+    """Категории и года создания"""
+    def get_category(self):
+        return Category.objects.all()
+
+    def get_years(self):
+        return Artworks.objects.filter(draft=False).values("year")
+
+class ArtworkView(CategoryYear, ListView):
     '''Работы художников'''
     model = Artworks
     queryset = Artworks.objects.filter(draft=False)
     template_name = "artworks/artworks_list.html"
 
 
-class ArtworkDetailView(DetailView):
+class ArtworkDetailView(CategoryYear, DetailView):
     '''Детальная информация по работе'''
     model = Artworks
     template_name = "artworks/artworks_detail.html"
     slug_field = "url"
 
-class ArtistsDetailView(DetailView):
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context["star_form"] = RaitingForm()
+        return context
+
+
+
+class ArtistsDetailView(CategoryYear, DetailView):
     '''Вывод информации о художнике'''
     model = Artists
     template_name = "artworks/artist.html"
@@ -41,3 +58,34 @@ class AddReview(View):
         return redirect(artwork.get_absolute_url())
 
 
+class FilterArtworkView(CategoryYear, ListView):
+    """Фильтр Картин"""
+    def get_queryset(self):
+        queryset = Artworks.objects.filter(
+            Q(year__in=self.request.GET.getlist("year"))|
+            Q(category__in=self.request.GET.getlist("category"))
+                                           )
+        return queryset
+
+class AddStarRating(View):
+    """Добавление рейтинга фильму"""
+
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
+
+    def post(self, request):
+        form = RaitingForm(request.POST)
+        if form.is_valid():
+            Raiting.objects.update_or_create(
+                ip=self.get_client_ip(request),
+                artworks_id=int(request.POST.get("artwork")),
+                defaults={'star_id': int(request.POST.get("star"))}
+            )
+            return HttpResponse(status=201)
+        else:
+            return HttpResponse(status=400)

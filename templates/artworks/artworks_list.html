@@ -12,7 +12,7 @@
             <img class="bd-placeholder-img card-img-top" style="object-fit: contain"  width="100%" src="{{ artwork.poster.url }}" class="card-img-top" alt="...">
             <div class="card-body">
               <p class="card-text" > {{ artwork.name }}</p>
-              <p class="card-text">{{ artwork.artist }}</p>
+              <p class="card-text">{{ artwork.artist.get_full_name }}</p>
               <p class="card-text">{{ artwork.description|safe }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">

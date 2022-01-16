@@ -174,6 +174,12 @@ class CountryAdmin(admin.ModelAdmin):
     list_display = ("label_ru", "domain", )
     search_fields = ("label_ru", "domain", )
 
+@admin.register(Raiting)
+class RaitingAdmin(admin.ModelAdmin):
+    '''Рейтинг'''
+    list_display = ("star","artworks", "ip")
+
+
 
 # admin.site.register(Category)
 # admin.site.register(Artworks)
@@ -182,7 +188,7 @@ class CountryAdmin(admin.ModelAdmin):
 # admin.site.register(Comment)
 # admin.site.register(Country)
 admin.site.register(Raitingstar)
-admin.site.register(Raiting)
+
 
 admin.site.site_title = "Django - GALERY"
 admin.site.site_header = "Django - GALERY"
