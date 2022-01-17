@@ -22,6 +22,7 @@ class ArtworkView(CategoryYear, ListView):
     model = Artworks
     queryset = Artworks.objects.filter(draft=False)
     template_name = "artworks/artworks_list.html"
+    paginate_by = 1
 
 
 class ArtworkDetailView(CategoryYear, DetailView):
@@ -60,6 +61,7 @@ class AddReview(View):
 
 class FilterArtworkView(CategoryYear, ListView):
     """Фильтр Картин"""
+    # paginate_by = 1
     def get_queryset(self):
         queryset = Artworks.objects.filter(
             Q(year__in=self.request.GET.getlist("year"))|

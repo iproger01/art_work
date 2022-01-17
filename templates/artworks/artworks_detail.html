@@ -20,7 +20,7 @@
              <a class="lead" href="{{ artist.get_absolute_url }}">{{ artist.get_full_name }}</a>
           {% endfor %}
 
-        <h4>Описание</h4>
+        <h6>Описание</h6>
         <p class="lead">{{ artworks.description|safe }}</p>
 {#        <h4>Категория: <span class="lead">{{ artworks.category  }}</span>         </h4>#}
 {#        <h4>Техника:#}
@@ -31,10 +31,10 @@
 {#                {% endif %}#}
 {#            {% endfor %}#}
         </h4>
-        <h4>Страна: <span class="lead">{{ artworks.country  }}</span></h4>
-        <h4>Местонахождение работы: <span class="lead">{{ artworks.location  }}</span> </h4>
-        <h4>Год создания работы: <span class="lead">{{ artworks.year  }}</span></h4>
-        <h4>Стоимость: <i class="lead">{{ artworks.price }} &#8381;</i></h4>
+        <h6>Страна: <span class="lead">{{ artworks.country  }}</span></h6>
+        <h6>Местонахождение работы: <span class="lead">{{ artworks.location  }}</span> </h6>
+        <h6>Год создания работы: <span class="lead">{{ artworks.year  }}</span></h6>
+        <h6>Стоимость: <i class="lead">{{ artworks.price }} &#8381;</i></h6>
         <div>
             <p class="lead" title="Как и где автор оставил свою подпись">Идентификация автора: {{ artworks.signature }}</p>
             <p class="lead" title="Проверка галереей или ссылка на NFT-маркетплейс">Подтверждение подлинности: {{ artworks.certificate_of_auth }}</p>
