@@ -22,7 +22,7 @@ class ArtworkView(CategoryYear, ListView):
     model = Artworks
     queryset = Artworks.objects.filter(draft=False)
     template_name = "artworks/artworks_list.html"
-    paginate_by = 1
+    paginate_by = 2
 
 
 class ArtworkDetailView(CategoryYear, DetailView):
@@ -91,3 +91,16 @@ class AddStarRating(View):
             return HttpResponse(status=201)
         else:
             return HttpResponse(status=400)
+
+class Search(ListView):
+    """Поиск картины"""
+    paginate_by = 2
+    def get_queryset(self):
+        return Artworks.objects.filter(name__icontains=self.request.GET.get("q"))
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(Search, self).get_context_data(*args,**kwargs)
+        context["q"] = f'q={self.request.GET.get("q")}&'
+        return context
+
+
