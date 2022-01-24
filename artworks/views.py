@@ -15,7 +15,7 @@ class CategoryYear():
         return Category.objects.all()
 
     def get_years(self):
-        return Artworks.objects.filter(draft=False).values("year")
+        return Artworks.objects.filter(draft=False).values("year").distinct("year")
 
 class ArtworkView(CategoryYear, ListView):
     '''Работы художников'''
@@ -34,6 +34,7 @@ class ArtworkDetailView(CategoryYear, DetailView):
     def get_context_data(self, **kwargs):
         context= super().get_context_data(**kwargs)
         context["star_form"] = RaitingForm()
+        context["form"] = ReviewForm()
         return context
 
 
@@ -61,7 +62,7 @@ class AddReview(View):
 
 class FilterArtworkView(CategoryYear, ListView):
     """Фильтр Картин"""
-    # paginate_by = 1
+    paginate_by = 2
     def get_queryset(self):
         queryset = Artworks.objects.filter(
             Q(year__in=self.request.GET.getlist("year"))|
@@ -100,7 +101,7 @@ class Search(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(Search, self).get_context_data(*args,**kwargs)
-        context["q"] = f'q={self.request.GET.get("q")}&'
+        context["q"] = f'&q={self.request.GET.get("q")}'
         return context
 
 
