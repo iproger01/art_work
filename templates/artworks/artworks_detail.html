@@ -1,5 +1,5 @@
 {% extends 'artworks/base.html' %}
-{% load static %}
+{% load i18n static %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
 {% block title %} {{ artworks.name}} {% endblock title %}
 {% block container %}
@@ -20,7 +20,7 @@
              <a class="lead" href="{{ artist.get_absolute_url }}">{{ artist.get_full_name }}</a>
           {% endfor %}
 
-        <h6>Описание</h6>
+        <h6>{% trans Описание %}</h6>
         <p class="lead">{{ artworks.description|safe }}</p>
 {#        <h4>Категория: <span class="lead">{{ artworks.category  }}</span>         </h4>#}
 {#        <h4>Техника:#}
@@ -31,17 +31,17 @@
 {#                {% endif %}#}
 {#            {% endfor %}#}
         </h4>
-        <h6>Страна: <span class="lead">{{ artworks.country  }}</span></h6>
-        <h6>Местонахождение работы: <span class="lead">{{ artworks.location  }}</span> </h6>
-        <h6>Год создания работы: <span class="lead">{{ artworks.year  }}</span></h6>
-        <h6>Стоимость: <i class="lead">{{ artworks.price }} &#8381;</i></h6>
+        <h6>{% trans Страна:%} <span class="lead">{{ artworks.country  }}</span></h6>
+        <h6>{% trans Местонахождение работы:%} <span class="lead">{{ artworks.location  }}</span> </h6>
+        <h6>{% trans Год создания работы:%} <span class="lead">{{ artworks.year  }}</span></h6>
+        <h6>{% trans Стоимость:%} <i class="lead">{{ artworks.price }} &#8381;</i></h6>
         <div>
-            <p class="lead" title="Как и где автор оставил свою подпись">Идентификация автора: {{ artworks.signature }}</p>
-            <p class="lead" title="Проверка галереей или ссылка на NFT-маркетплейс">Подтверждение подлинности: {{ artworks.certificate_of_auth }}</p>
-            <p class="lead">Размер работы: {{ artworks.size }} mm.</p>
-            <p class="lead">Теги: {{ artworks.tags }}</p>
+            <p class="lead" title="Как и где автор оставил свою подпись">{% trans  Идентификация автора:%} {{ artworks.signature }}</p>
+            <p class="lead" title="Проверка галереей или ссылка на NFT-маркетплейс">{% trans Подтверждение подлинности:%} {{ artworks.certificate_of_auth }}</p>
+            <p class="lead"> {% trans Размер работы: %} {{ artworks.size }} mm.</p>
+            <p class="lead">{% trans Теги: %} {{ artworks.tags }}</p>
             <form action="{% url 'add_rating' %}" method="post" name="rating">
-                <b>Рейтинг</b>
+                <b>{% trans Рейтинг %}</b>
                 {% csrf_token %}
                 <input type="hidden" value="{{ artworks.id }}" name="artwork">
 {#                {{ star_form }}#}
