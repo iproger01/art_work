@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-25 22:02+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\templates\artworks\artworks_detail.html:23
+msgid "Описание"
+msgstr "Description"
+
+#: .\templates\artworks\artworks_detail.html:34
+msgid "Страна"
+msgstr "Country"
+
+#: .\templates\artworks\artworks_detail.html:35
+msgid "Местонахождение работы"
+msgstr "Location of the painting "
+
+#: .\templates\artworks\artworks_detail.html:36
+msgid "Год создания работы"
+msgstr "Year of the painting "
+
+#: .\templates\artworks\artworks_detail.html:37
+msgid "Стоимость"
+msgstr "Price"
+
+#: .\templates\artworks\artworks_detail.html:39
+msgid "Идентификация автора"
+msgstr "Author identification "
+
+#: .\templates\artworks\artworks_detail.html:40
+msgid "Подтверждение подлинности"
+msgstr "Authentication artist's"
+
+#: .\templates\artworks\artworks_detail.html:41
+msgid "Размер работы"
+msgstr "Painting size  "
+
+#: .\templates\artworks\artworks_detail.html:42
+msgid "Теги"
+msgstr "Tags"
+
+#: .\templates\artworks\artworks_detail.html:44
+msgid "Рейтинг"
+msgstr "Rating"
