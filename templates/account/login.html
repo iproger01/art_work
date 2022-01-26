@@ -2,8 +2,8 @@
 {#{% extends "account/base.html" %}#}
 
 {% load i18n %}
-{% load account %}
-{#socialaccount#}
+{% load account socialaccount %}
+
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
@@ -13,9 +13,8 @@
         <div class="container">
             <div class="row">
 
-
-                {#{% get_providers as socialaccount_providers %}#}
                  <div>
+                     {% get_providers as socialaccount_providers %}
                     <h1>{% trans "Sign In" %}</h1>
                     {% if socialaccount_providers %}
                     <p>{% blocktrans with site.name as site_name %}Please sign in with one

@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'mailinglist',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.vk',
 ]
 
 MIDDLEWARE = [
