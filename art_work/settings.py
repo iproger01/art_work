@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'mailinglist',
+    'allauth',
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -94,6 +96,18 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+#аутентификация allauth
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1 #дни на подтверждение email
+ACCOUNT_USERNAME_MIN_LENGTH = 4 #минимальное количество символов login
+
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend' #имитация email на беке
+
 
 
 # Password validation
