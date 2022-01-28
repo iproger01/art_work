@@ -1,0 +1,25 @@
+{% extends 'artworks/base.html' %}
+{% block title %} {% endblock title %}
+{% block header %} bg1 {% endblock header %}
+{% block event %}
+  <div class="left-ads-display col-lg-9">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {%  for event in event_list %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="bd-placeholder-img card-img-top" style="object-fit: contain"  width="100%" src="{{ event.poster.url }}" class="card-img-top" alt="...">
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+    <div class="align-content-center col-lg-9" >
+        {% include 'artworks/pagination.html' %}
+    </div>
+</div>
+{% endblock event %}
+
+

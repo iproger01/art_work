@@ -181,7 +181,9 @@ class RaitingAdmin(admin.ModelAdmin):
     '''Рейтинг'''
     list_display = ("star","artworks", "ip")
 
-
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ("text", "poster")
 
 # admin.site.register(Category)
 # admin.site.register(Artworks)

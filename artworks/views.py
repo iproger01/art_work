@@ -104,4 +104,8 @@ class Search(ListView):
         context["q"] = f'&q={self.request.GET.get("q")}'
         return context
 
-
+class EventView(ListView):
+    '''Постеры событий'''
+    model = Event
+    template_name = "artworks/event.html"
+    paginate_by = 3

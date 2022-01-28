@@ -18,7 +18,7 @@
     <meta name="title" content="Маркетплейс предметов современного искуства">
     <meta name="docsearch:language" content="ru">
     <meta name="docsearch:version" content="5.0">
-    <title>Маркетплейс современного искусства</title>
+    <title>Галерея современного искусства</title>
     <!-- Bootstrap core CSS -->
 
     {#<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">#}
@@ -34,7 +34,7 @@
     <meta name="theme-color" content="#7952b3">
     <!-- Facebook -->
     <meta property="og:url" content="/">
-    <meta property="og:title" content="Маркетплейс предметов современного искуства">
+    <meta property="og:title" content="Галерея предметов современного искуства">
     <meta property="og:description" content="Еще не прикупили ни одной картины? Посетите наш сайт и Вы не останетесь равнодушним.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="{{ artwork.poster.url }}">
@@ -69,9 +69,11 @@
     </div>
     <ol class="breadcrumb editContent">
         <li class="breadcrumb-item">
-            <a href="index.html" class="editContent">Home</a>
+            <a href="{% url 'event' %}" class="editContent">Анонсы событий </a>
         </li>
-        <li class="breadcrumb-item active editContent">Single Page</li>
+        <li class="breadcrumb-item">
+            <a href="/" class="editContent">Просмотр работ художников </a>
+        </li>
     </ol>
     {% block content %}
 

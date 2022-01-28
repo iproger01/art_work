@@ -153,5 +153,14 @@ class Country(models.Model):
         verbose_name = "Страна"
         verbose_name_plural = "Страны"
 
+class Event(models.Model):
+    poster = models.ImageField(verbose_name="Изображение", upload_to="artworks/event/")
+    text = models.CharField(verbose_name="Имя", max_length=1000)
 
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        verbose_name = "Анонс события"
+        verbose_name_plural = "Анонсы"
 

@@ -19,7 +19,7 @@
                   <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href = '{{ artwork.get_absolute_url }}';">Посмотреть</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary">Купить</button>
                 </div>
-                <small class="text-muted">9 минут</small>
+{#                <small class="text-muted">9 минут</small>#}
               </div>
             </div>
           </div>
@@ -28,7 +28,8 @@
       </div>
     </div>
   </div>
-    <div class="align-content-center col-lg-9" >
+      <div class="align-content-center col-lg-9" >
+          <br>
         {% include 'artworks/pagination.html' %}
     </div>
 </div>

@@ -1,4 +1,4 @@
-<p class="editContent">Для подписки на рассылку укажите email в этом поле.</p>
+<p class="editContent">Получайте свежую информацию о новинках нашей галереи, предстоящих выставках:</p>
 <form action="{% url 'contact' %}" method="post" class="w3layouts-newsletter">
     {% csrf_token %}
     {{ contact_form }}
