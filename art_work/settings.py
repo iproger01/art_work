@@ -108,7 +108,6 @@ LOGIN_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1 #дни на подтверждение email
 ACCOUNT_USERNAME_MIN_LENGTH = 4 #минимальное количество символов login
 
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend' #имитация email на беке
 
 
 
@@ -235,10 +234,29 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
-
+#RECAPTCHA
 RECAPTCHA_PUBLIC_KEY = "6LceczAeAAAAABnyT50pYkD8qAlgnuKygWTA6gd5"
 RECAPTCHA_PRIVATE_KEY = "6LceczAeAAAAAGzlhkD7-IFmPl6kX9IJC0tqUh6x"
 RECAPTCHA_DEFAULT_ACTION = 'generic'
 RECAPTCHA_SCORE_THRESHOLD = 0.5
 
 SITE_ID = 1
+
+# EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend' #имитация email на беке
+
+#SMTP
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.timeweb.ru'
+EMAIL_HOST_USER = 'kiselev@nataliustimenko.ru'
+EMAIL_HOST_PASSWORD = 'kDwK7ype'
+EMAIL_PORT = '465'
+
+#REDIS
+REDIS_HOST = '0.0.0.0'
+REDIS_PORT = '6379'
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST+':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout':3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST+':' + REDIS_PORT + '/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
