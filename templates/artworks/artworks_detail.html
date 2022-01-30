@@ -1,6 +1,6 @@
 {% extends 'artworks/base.html' %}
 {% load static i18n %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
+{#<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">#}
 {% block title %} {{ artworks.name}} {% endblock title %}
 {% block container %}
     <div class="container py-md-3">
@@ -15,31 +15,50 @@
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-Заголовок">"{{ artworks.name}}" </h2>
-          {% for artist in artworks.artist.all %}
-             <a class="lead" href="{{ artist.get_absolute_url }}">{{ artist.get_full_name }}</a>
-          {% endfor %}
-
-        <h6>{% trans "Описание" %}</h6>
-        <p class="lead">{{ artworks.description|safe }}</p>
-{#        <h4>Категория: <span class="lead">{{ artworks.category  }}</span>         </h4>#}
-{#        <h4>Техника:#}
-{#            {% for category in artworks.category %}#}
-{#                <span class="lead">{{ category }}</span>#}
-{#                {% if artworks.category.all.count > 1 %}#}
-{#                    <span>,</span>#}
-{#                {% endif %}#}
-{#            {% endfor %}#}
-        </h4>
-        <h6>{% trans "Страна"%}: <span class="lead">{{ artworks.country  }}</span></h6>
-        <h6>{% trans "Местонахождение работы"%}: <span class="lead">{{ artworks.location  }}</span> </h6>
-        <h6>{% trans "Год создания работы"%}: <span class="lead">{{ artworks.year  }}</span></h6>
-        <h6>{% trans "Стоимость"%}: <i class="lead">{{ artworks.price }} &#8381;</i></h6>
+        <h3 class="featurette-Заголовок">"{{ artworks.name}}" </h3>
+{#          {% for artist in artworks.artist.all %}#}
+             <a href="{{ artworks.artist.get_absolute_url }}">Художник: {{ artworks.artist.get_full_name}}</a>
+{#          {% endfor %}#}
+        <ul>
+            <li style="list-style: none">
+        <span><b>{% trans "Описание" %}:</b><span>{{ artworks.description|safe }}</span></span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Техника" %}:</b>
+            {% for tech in artworks.category.all %}
+                <span>{{ tech }}</span>
+                {% if artworks.category.all.count > 1 %}
+                    <span>,</span>
+                {% endif %}
+            {% endfor %}
+        </span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Страна"%}:</b> {{ artworks.country  }}</span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Местонахождение работы"%}:</b> {{ artworks.location  }}</span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Год создания работы"%}:</b>  {{ artworks.year }}</span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Стоимость"%}:</b>  <i class="lead">{{ artworks.price }} &#8381;</i></span>
+            </li>
+            <li style="list-style: none">
+        <span title="Как и где автор оставил свою подпись"><b>{% trans  "Идентификация автора"%}:</b>  {{ artworks.signature }}</span>
+            </li>
+            <li style="list-style: none">
+        <span title="Ссылка на NFT-маркетплейс"><b>{% trans "NFT токен"%}:</b>  <a href="/">{{ artworks.certificate_of_auth }}</a></span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Размер работы" %}:</b>  {{ artworks.size }} cm.</span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Теги" %}:</b>  {{ artworks.tags }}</span>
+            </li>
+        </ul>
         <div>
-            <p class="lead" title="Как и где автор оставил свою подпись">{% trans  "Идентификация автора"%}: {{ artworks.signature }}</p>
-            <p class="lead" title="Проверка галереей или ссылка на NFT-маркетплейс">{% trans "Подтверждение подлинности"%} {{ artworks.certificate_of_auth }}</p>
-            <p class="lead"> {% trans "Размер работы" %} {{ artworks.size }} mm.</p>
-            <p class="lead">{% trans "Теги" %}: {{ artworks.tags }}</p>
             <form action="{% url 'add_rating' %}" method="post" name="rating">
                 <b>{% trans "Рейтинг" %}</b>
                 {% csrf_token %}
@@ -63,6 +82,7 @@
       </div>
 
     </div>
+    <br>
     <div class="left-ads-display col-lg-12">
     {% include 'include/comment.html' %}
     </div>

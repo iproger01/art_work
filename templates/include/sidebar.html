@@ -1,6 +1,6 @@
-{% load artwork_tags %}
+{% load artwork_tags i18n %}
 <div class="search-bar w3layouts-newsletter">
-    <h3 class="sear-head editContent">Поиск художественной работы</h3>
+    <h3 class="sear-head editContent">{% trans "Поиск художественной работы" %}</h3>
     <form action="{% url 'search' %}" method="get" class="d-flex editContent">
         <input type="search" placeholder="Введите название..." name="q"
                class="form-control" required="">
@@ -11,7 +11,9 @@
 <!--preference -->
 <form action="{% url "filter" %}" method="get">
     <div class="left-side my-4">
-        <h3 class="sear-head editContent">Жанры живописи</h3>
+
+        <h3 class="sear-head editContent">{% trans "Жанры живописи" %}</h3>
+
         <ul class="w3layouts-box-list">
             {% for category in view.get_category %}
                 <li class="editContent">
@@ -20,12 +22,13 @@
                 </li>
             {% endfor %}
         </ul>
+
     </div>
 <!-- // preference -->
 <!-- discounts -->
 
     <div class="left-side">
-        <h3 class="sear-head editContent">Год создания работы</h3>
+        <h3 class="sear-head editContent">{% trans "Год создания работы" %}</h3>
         <ul class="w3layouts-box-list">
             {% for artworks in view.get_years %}
                 <li class="editContent">
@@ -35,7 +38,7 @@
             {% endfor %}
         </ul>
     </div>
-<button type="submit">Найти</button>
+<button type="submit">{% trans "Найти" %}</button>
 <p></p>
 </form>
 <!-- //discounts -->

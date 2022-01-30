@@ -3,6 +3,6 @@ from celery import Celery
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'art_work.settings')
 
-app = Celery('mailinglist')
+app = Celery('art_work')
 app.config_from_object('django.conf:settings', namespace = 'CELERY')
 app.autodiscover_tasks()

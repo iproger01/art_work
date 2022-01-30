@@ -22,7 +22,7 @@ class ArtworkView(CategoryYear, ListView):
     model = Artworks
     queryset = Artworks.objects.filter(draft=False)
     template_name = "artworks/artworks_list.html"
-    paginate_by = 2
+    paginate_by = 3
 
 
 class ArtworkDetailView(CategoryYear, DetailView):

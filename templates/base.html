@@ -68,9 +68,11 @@
         {% include 'include/header.html' %}
     </div>
     <ol class="breadcrumb editContent">
+        {% if user.is_authenticated %}
         <li class="breadcrumb-item">
             <a href="{% url 'event' %}" class="editContent">Анонсы событий </a>
         </li>
+        {% endif%}
         <li class="breadcrumb-item">
             <a href="/" class="editContent">Просмотр работ художников </a>
         </li>

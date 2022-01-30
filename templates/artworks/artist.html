@@ -1,4 +1,5 @@
 {% extends 'artworks/base.html' %}
+{% load static i18n %}
 {% block title %} {{ artists.get_full_name}} {% endblock title %}
 {% block container %}
     <div class="container py-md-3">
@@ -9,32 +10,55 @@
 {% endblock sidebar %}
 
 {% block artwork %}
-  <div class="left-ads-display col-lg-8">
-
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-Заголовок">"{{ artists.get_full_name}}" </h2>
-        <h4>Биография</h4>
-        <h4>Дата рождения: <span class="lead">{{ artists.age  }}</span></h4>
-        <h4>Образование: <span class="lead">{{ artists.education  }}</span></h4>
-        <h4>Локация: <span class="lead">{{ artists.location  }}</span></h4>
-        <h4>Техника:
-{#            {{ artists.technic_favorite }}#}
-            {% for technic_paint in artists.technic_favorite.all %}
-                <span class="lead">{{ technic_paint.name }}</span>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-5">
+             <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{{ artists.image.url }}" class="card-img-top" alt="{{artworks.name}}">
+        </div>
+        <div class="col-sm-5">
+            <h4 class="featurette-Заголовок">{{ artists.get_full_name}} </h4>
+        <ul>
+            <li style="list-style: none">
+        <span><b>{% trans "Дата рождения" %}:</b><span> {{ artists.age}}</span></span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Образование" %}:</b><span> {{ artists.education}}</span></span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Локация" %}:</b><span> {{ artists.location }}</span></span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Техника работы" %}:</b><span>  {% for technic_paint in artists.technic_favorite.all %}
+                <span>{{ technic_paint.name }}</span>
                 {% if artists.technic_favorite.all.count > 1 %}
-                    <span>,</span>
+                    <span> </span>
                 {% endif %}
-            {% endfor %}
-        </h4>
-      </div>
-
-      <div class="col-md-5 order-md-1">
-        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{{ artists.image.url }}" class="card-img-top" alt="{{artworks.name}}">
-
-      </div>
-
+            {% endfor %}</span>
+                </span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Локация" %}:</b><span> {{ artists.location }}</span></span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "Инстаграм" %}:</b><a href="{{ artists.instagram }}"> {{ artists.instagram }}</a></span>
+            </li>
+            <li style="list-style: none">
+        <span "><b>{% trans "Сайт" %}:</b><a href="{{ artists.site }}"> {{ artists.site }}</a></span>
+            </li>
+            <li style="list-style: none">
+        <span><b>{% trans "NFT-платформа" %}:</b><a href="{{ artists.nft_platform }}"> {{ artists.nft_platform }}</a></span>
+            </li>
+        </ul>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-8">
+            <span><b>{% trans "Биография" %}:</b><span> {{ artists.description }}</span></span>
+        </div>
+    </div>
+</div>
+
+
 {#    <div class="left-ads-display col-lg-12">#}
 {#    {% include 'include/comment.html' %}#}
 {#    </div>#}
