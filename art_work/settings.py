@@ -149,7 +149,6 @@ LANGUAGES = (
     ('en',gettext('English')),
 )
 LANGUAGE_CODE = 'ru'
-
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
