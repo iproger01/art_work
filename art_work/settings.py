@@ -91,9 +91,9 @@ WSGI_APPLICATION = 'art_work.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'artwork_db',
-        'USER': 'postgres',
-        'PASSWORD': '12345678',
+        'NAME': 'art_new',
+        'USER': 'administrator',
+        'PASSWORD': 'administrator',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -133,7 +133,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+
 
 TIME_ZONE = 'UTC'
 
@@ -148,6 +148,7 @@ LANGUAGES = (
     ('ru',gettext('Russian')),
     ('en',gettext('English')),
 )
+LANGUAGE_CODE = 'ru'
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),

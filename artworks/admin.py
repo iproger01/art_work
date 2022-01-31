@@ -138,7 +138,7 @@ class ArtistAdmin(TranslationAdmin):
         }),
 
         (None, {
-            "fields": (("age", "education","description"),)
+            "fields": (("age", "education","description","location"),)
         }),
 
         (None, {

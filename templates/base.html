@@ -1,4 +1,4 @@
-{% load static recaptcha3 %}
+{% load static i18n recaptcha3  %}
 <!doctype html>
 <html lang="ru" prefix="og: http://ogp.me/ns#">
 <head>
@@ -18,7 +18,7 @@
     <meta name="title" content="Маркетплейс предметов современного искуства">
     <meta name="docsearch:language" content="ru">
     <meta name="docsearch:version" content="5.0">
-    <title>Галерея современного искусства</title>
+    <title>{% trans "Галерея современного искусства "%}</title>
     <!-- Bootstrap core CSS -->
 
     {#<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">#}
@@ -70,11 +70,11 @@
     <ol class="breadcrumb editContent">
         {% if user.is_authenticated %}
         <li class="breadcrumb-item">
-            <a href="{% url 'event' %}" class="editContent">Анонсы событий </a>
+            <a href="{% url 'event' %}" class="editContent">{%trans " Анонсы событий"%} </a>
         </li>
         {% endif%}
         <li class="breadcrumb-item">
-            <a href="/" class="editContent">Просмотр работ художников </a>
+            <a href="/" class="editContent">{% trans "Просмотр работ художников "%} </a>
         </li>
     </ol>
     {% block content %}
