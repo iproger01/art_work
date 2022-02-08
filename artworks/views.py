@@ -8,6 +8,7 @@ from django.views.generic import ListView, DetailView
 
 from .models import *
 from .forms import ReviewForm, RaitingForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class CategoryYear():
     """Категории и года создания"""
@@ -104,8 +105,9 @@ class Search(ListView):
         context["q"] = f'&q={self.request.GET.get("q")}'
         return context
 
-class EventView(ListView):
+class EventView(LoginRequiredMixin, ListView):
     '''Постеры событий'''
     model = Event
     template_name = "artworks/event.html"
     paginate_by = 3
+    raise_exception = True
